@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coffee Cafe</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Playfair+Display:wght@600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5d4d4ea;
+    }
+
+    /* Navbar Styles */
+    nav {
+      background-color: #493131;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .navbar {
+      padding: 15px;
+    }
+
+    #logo img {
+      border-radius: 10px;
+      width: 160px;
+      margin-left: 40px;
+    }
+
+    nav a {
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 500;
+      font-size: 1.1rem;
+      padding: 15px 20px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    nav a:hover {
+      color: #010000;
+      transform: scale(1.1);
+    }
+
+    /* Section Styles */
+    section {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    /* home content */
+    #home {
+      width: 100%;
+      height: 90vh;
+      background-image: linear-gradient(rgb(54, 54, 54), rgba(0, 0, 0, 0.3)), url(home.jpeg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: 80%;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    .content {
+      padding-top: 210px;
+      margin-left: 56px;
+    }
+
+    .content h3 {
+      font-size: 50px;
+      color: white;
+    }
+
+    .content p {
+      margin-top: 10px;
+      color: white;
+    }
+
+    #btn {
+      width: 150px;
+      height: 36px;
+      margin-top: 20px;
+      background: white;
+      border-radius: 5px;
+      font-weight: bold;
+      border: none;
+      transition: 0.5s ease;
+      cursor: pointer;
+    }
+
+    #btn:hover {
+      background: #b2744c;
+      color: white;
+    }
+
+    /* home content */
+
+    /* About Us Section */
+    #about {
+      background-color: #f5f5f5;
+      padding: 80px 0;
+    }
+
+    /* Specialties Section */
+    #specialties {
+      padding: 80px 0;
+      background-color: #f6d09c;
+    }
+
+    .specialty-card {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .specialty-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .specialty-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .specialty-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-top: 15px;
+    }
+
+    .specialty-card p {
+      font-size: 1rem;
+    }
+
+    /* Product Menu Section */
+    #products {
+      background-color: #dbb0a0;
+      padding: 100px 0;
+    }
+
+    .product-card {
+      background-color: #f8f9fa;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+      text-align: center;
+      transition: transform 0.3s ease-in-out;
+      position: relative;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .product-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      margin-top: 15px;
+    }
+
+    .product-card p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .product-card .price {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #FFC107;
+      color: #fff;
+      padding: 5px 15px;
+      font-size: 1.3rem;
+      border-radius: 20px;
+      display: none;
+    }
+
+    .product-card:hover .price {
+      display: block;
+    }
+
+    /* Gallery Section */
+    #gallery img {
+      width: 100%;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    #gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      background-color: #f4f4f4;
+      padding: 80px 0;
+    }
+
+    .testimonial-card {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin: 20px;
+    }
+
+    /* Modal Styles for Video Pop-up */
+    .modal-dialog {
+      max-width: 80%;
+    }
+
+    .modal-body iframe {
+      width: 100%;
+      height: 400px;
+    }
+
+    .arrow {
+      position: fixed;
+      border-radius: 50px;
+      height: 50px;
+      bottom: 40px;
+      right: 50px;
+      text-decoration: none;
+      text-align: center;
+      line-height: 50px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="container">
+      <div class="navbar navbar-expand-lg navbar-dark">
+
+        <a class="navbar-brand" href="#" id="logo"><img src="logo.png" alt=""></a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#specialties">Specialties</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#products">Menue</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="#order">Order Now</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- home section -->
+  <section id="home">
+    <div class="content">
+      <h3>Start Your Day With a <br> Fresh Coffee</h3>
+      <p>Indulge in the rich aroma and exquisite taste of our freshly brewed coffee.
+        <br> Each cup is crafted with passion and precision, ensuring a perfect start to your day.
+        <br> Embrace the warmth, savor the flavor, and let our coffee be your daily dose of delight.
+
+      </p>
+
+    </div>
+  </section>
+
+  <!-- home section -->
+
+  <!-- About Us Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeIn">About Us</h2>
+      <p class="lead">At Coffee Cafe, we serve the finest coffee from around the world. Our baristas are experts in
+        crafting the perfect coffee for every moment.</p>
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <img src="about.png" class="img-fluid rounded" alt="Cafe Interior">
+        </div>
+        <div class="col-md-6">
+          <b><i>
+              <h22>What Makes Our Coffee Special?</h22>
+            </i></b>
+          <p></p>Our coffee is more than just a beverage ; it's an experience crafted with passion and precision. What
+          sets our coffee apart is the meticulous journey from bean to cup.
+          <br><br>We source only the finest, ethically-grown beans from the world's most renowned coffee regions,
+          ensuring each sip is a testament to quality and sustainability.
+          <br><br> Our expert roasters then bring out the unique flavors and aromas of each bean, creating a symphony of
+          taste that dances on your palate.
+          <br><br> Come, savor the difference, and let our coffee be the highlight of your day. ☕✨
+          </p>
+
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Specialties Section -->
+  <section id="specialties">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeIn">Our Specialties</h2>
+      <p class="lead">Discover our signature drinks that will keep you coming back for more.</p>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <div class="specialty-card">
+            <img src="c2.png" alt="Espresso">
+            <h4>Espresso</h4>
+            <p>A bold shot of espresso to jump-start your day.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="specialty-card">
+            <img src="c1.png" alt="Latte">
+            <h4>Latte</h4>
+            <p>A smooth espresso with steamed milk and a hint of foam.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="specialty-card">
+            <img src="c3.png" alt="Cappuccino">
+            <h4>Cappuccino</h4>
+            <p>A perfect balance of espresso, steamed milk, and foam.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Menu Section (Updated) -->
+  <section id="products">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeIn">Our Menu</h2>
+      <p class="lead">Explore our wide range of coffees and beverages.</p>
+      <div class="row mt-5">
+        <!-- Product Cards -->
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m8.png" alt="Espresso">
+            <h4>Espresso</h4>
+            <p>A bold shot of espresso</p>
+            <span class="price">Rs.250</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m3.png" alt="Latte">
+            <h4>Latte</h4>
+            <p>A smooth espresso with steamed milk</p>
+            <span class="price">Rs.350</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m4.png" alt="Cappuccino">
+            <h4>Cappuccino</h4>
+            <p>Espresso with steamed milk and foam</p>
+            <span class="price">Rs.300</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m5.png" alt="Macchiato">
+            <h4>Macchiato</h4>
+            <p>Espresso with a touch of steamed milk</p>
+            <span class="price">Rs.290</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m2.png" alt="Flat White">
+            <h4>Flat White</h4>
+            <p>A perfect blend of espresso and creamy milk</p>
+            <span class="price">Rs.375</span>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="product-card">
+            <img src="m7.png" alt="Mocha">
+            <h4>Mocha</h4>
+            <p>Espresso with chocolate and steamed milk</p>
+            <span class="price">Rs.400</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Other Sections like Gallery, Testimonials, Order Now, and Contact Us remain as is -->
+
+
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeIn">Our Gallery</h2>
+      <p class="lead">Take a virtual tour of our cozy coffee shop and the art of coffee making.</p>
+      <div class="row mt-5">
+        <div class="col-md-4">
+          <img src="barista.png" data-toggle="modal" data-target="#videoModal"
+            data-video-id="N0GBPAcHZdQ" alt="Video 1">
+        </div>
+        <div class="col-md-4">
+          <img src="tour img.png" data-toggle="modal" data-target="#videoModal"
+            data-video-id="i94Ofx4sQb0" alt="Video 2">
+        </div>
+        <div class="col-md-4">
+          <img src="what's inside.png" data-toggle="modal" data-target="#videoModal"
+            data-video-id="uLobRz8Nv8Q" alt="Video 3">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- blogs -->
+  <section class="blogs" id="blogs">
+    <h1>Heartfelt <span>Testimonials</span></h1>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="b1.png" alt="" width="349" height="400">
+            <div class="card-body">
+              <h3>chris Hemsworth </h3>
+              <h5>12/12/2022 </h5>
+              <p> "Their coffee is simply the best! The rich flavors and the perfect balance make every cup a delight.
+                <br> Plus, the staff is always friendly and welcoming. It's my favorite spot in town."
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="l2.png" alt="" width="349" height="400">
+            <div class="card-body">
+              <h3>Emma Watson</h3>
+              <h5>12/12/2021</h5>
+              <p>"I love the variety of coffee options they offer.
+                <br> Whether I'm in the mood for a classic espresso or a seasonal special they always have something
+                amazing."
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+          <div class="card">
+            <img src="l1.jpg" alt="" width="349" height="400">
+            <div class="card-body">
+              <h3>Elena Robert</h3>
+              <h5>12/12/2023</h5>
+              <p>"I've been coming here every morning for the past two years.
+                <br>The coffee is always perfect, and the staff makes me feel like family. It's the best way to start my
+                day!"
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+  </section>
+  <!-- blogs -->
+
+  <!-- Order Now Section (Retained as is) -->
+  <section id="order" style="background-color: #ffffff; padding: 100px 0;">
+    <div class="container">
+      <h2>Order Your Favorite Coffee</h2>
+      <p class="lead">Select your favorite drink and let us take care of the rest. We offer dine-in and takeaway
+        options!</p>
+      <form id="orderForm">
+        <div class="form-row">
+          <div class="col-md-6">
+            <label for="coffeeSelect">Select Coffee</label>
+            <select class="form-control" id="coffeeSelect">
+              <option value="espresso">Espresso</option>
+              <option value="latte">Latte</option>
+              <option value="cappuccino">Cappuccino</option>
+              <option value="cappuccino">Macchiato</option>
+              <option value="cappuccino">Flat white</option>
+              <option value="cappuccino">Mocha</option>
+            </select>
+          </div>
+          <div class="col-md-6">
+            <label for="size">Size</label>
+            <select class="form-control" id="size">
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-md-6">
+            <label for="name">Your Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="col-md-6">
+            <label for="option">Take Away or Drink Inside?</label>
+            <select id="option" class="form-control">
+              <option value="Take Away">Take Away</option>
+              <option value="Drink Inside">Drink Inside</option>
+            </select>
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <button type="submit" class="btn btn-submit">Place Order</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Contact Us Section (Retained as is) -->
+  <section id="contact" style="background-color: #f4f4f4; padding: 100px 0;">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeIn">Contact Us</h2>
+      <p class="lead animate__animated animate__fadeIn">
+      <p>"We invite you to connect with us. Your thoughts and inquiries are invaluable to us, and we are dedicated to
+        providing you with an exceptional experience.
+        <br> Whether you have a question, a suggestion, or simply wish to share your love for our coffee, we are here to
+        listen and assist.
+        <br>Reach out to us and become a part of our coffee family."
+      </p>
+      <form id="contactForm">
+        <div class="form-row">
+          <div class="col-md-6">
+            <label for="contactName">Name</label>
+            <input type="text" class="form-control" id="contactName" placeholder="Your Name">
+          </div>
+          <div class="col-md-6">
+            <label for="contactEmail">Email</label>
+            <input type="email" class="form-control" id="contactEmail" placeholder="Your Email">
+          </div>
+        </div>
+        <div class="form-row mt-4">
+          <div class="col-md-12">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Your Message"></textarea>
+          </div>
+        </div>
+        <div class="mt-4 text-center">
+          <button type="submit" class="btn btn-submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center py-4" style="background-color: #3E2723; color: #fff;">
+
+
+    <a href="#" class="arrow"><i><img src="up-arrow.png" alt="" width="50px"></i></a>
+
+    </div>
+    <div class="credite text-center">
+      Designed By <a>SOMYA SHUKLA</a>
+    </div>
+
+
+
+    <p>&copy; 2024 Coffee Cafe. All rights reserved.</p>
+  </footer>
+
+  <!-- Modal for Video Pop-up -->
+  <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="videoModalLabel">Get a sneak peek of our coffee cafe and experience its charm,
+            elegance, and hidden treasures. </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <iframe id="videoPlayer" width="100%" height="500" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Video Modal Dynamic Source
+    $('#videoModal').on('show.bs.modal', function (e) {
+      var videoId = $(e.relatedTarget).data('video-id');
+      $('#videoPlayer').attr('src', 'https://www.youtube.com/embed/' + videoId);
+    });
+
+    // Form Reset on Submit (No Backend)
+    $('#orderForm').on('submit', function (e) {
+      e.preventDefault();
+      alert('Your order has been placed!');
+      $('#orderForm')[0].reset();
+    });
+
+    $('#contactForm').on('submit', function (e) {
+      e.preventDefault();
+      alert('Your message has been sent!');
+      $('#contactForm')[0].reset();
+    });
+  </script>
+
+
+</body>
+
+</html>
